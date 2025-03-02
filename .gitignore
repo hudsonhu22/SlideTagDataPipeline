@@ -1,0 +1,6 @@
+PipelineFolder/
+ckpt.tar.gz
+.nextflow.log*
+test.nf
+.nextflow/
+work/
