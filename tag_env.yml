@@ -1,0 +1,9 @@
+name: slide_tag_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - h5py
+  - numpy=1.21
+  - scipy

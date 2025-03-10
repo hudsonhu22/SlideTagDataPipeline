@@ -5,3 +5,10 @@ ckpt.tar.gz
 test.nf
 .nextflow/
 work/
+.run_bender_dummy.*
+slide_tag_env_latest.sif
+RunBenderDummy.slurm
+RunRangerDummy.slurm
+bc13_test.csv
+ST_BC9_cDNA_lib_results/
+ST_BC13_cDNA_lib_results/

@@ -35,7 +35,7 @@ module load nextflow
 
 2. Call the setup process. (Note: Should take approximately 17 minutes.)
 ```bash
-nextflow run setup.nf -profile singularity
+nextflow run setup.nf -profile standard
 ```
 
 4. Now comparing your observed file structure to the expected:
@@ -56,7 +56,9 @@ CellRanger requires consenting to the 10x genomics terms & conditions:
 
 1. Visit this link to download the pipeline: 
 		https://www.10xgenomics.com/support/software/cell-ranger/downloads
-
+	```bash
+	tar -xvzf cellranger-9.0.1.tar.gz
+	```
 2. Download the reference data for the species into the pipeline folder
 
 3. Add the CellRanger folder to `/SlideTagNextflow/PipelineFolder/CellRanger/`
@@ -76,6 +78,15 @@ PipelineFolder
 	└── Mouse
 ```
 
+4. Due to the latest update of CellRanger you will need to generate a 10x cloud token
+```
+path/to/folder/cellranger cloud auth setup
+```
+
+Then follow the security link to setup an account.
+
+5. Make sure to change token in main.nf to your token. 
+
 ### 4. Preparing Inputs
 
 1. Download the example sample sheet & change the paths to your corresponding sample
@@ -86,7 +97,7 @@ PipelineFolder
 ### 5. Running Pipeline
 Make sure you are in the directory containing the `.nf` files
 ```bash
-nextflow run run.nf --samplesheet="/path/to/samplesheet" -profile singularity
+nextflow run run.nf --samplesheet="/path/to/samplesheet.csv" -profile standard
 ```
 Note: Change `nextflow.config` file if running larger files to fine-tune slurm request requirements.
 
@@ -101,7 +112,3 @@ results
 ├── filtered_feature_bc_matrix.h5
 ├── metrics_summary.csv
 ```
-
-
-# Edits to make
-Add --outdir as a flag then get that to connect to CURIOTREKKERMODIFY

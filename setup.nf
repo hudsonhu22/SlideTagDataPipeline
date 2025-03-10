@@ -28,38 +28,21 @@ tar -xzf -
 	"""
 }
 
-process setupMouseReference {
-	publishDir "PipelineFolder/References/Mouse/"
+process setupContainer {
+	publishDir "PipelineFolder/Containers/"
 
 	output:
-	path "Mus_musculus_GRCm39"
+	path "slide_tag_env_latest.sif"
 
 	script:
 	"""
-	wget https://curioseekerbioinformatics.s3.us-west-1.amazonaws.com/references/Mus_musculus_GRCm39.tar.gz -O - | tar -xzf -
-	"""
-}
-
-process setupRatReference {
-	publishDir "PipelineFolder/References/Rat/"
-
-	output:
-	path "mRatBN7"
-
-	script:
-	"""
-	wget https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-mRatBN7-2-2024-A.tar.gz -O - | tar -xzf -
+	module load StdEnv/2023 apptainer/1.3.4
+	apptainer pull docker://hmdh22/slide_tag_env:latest
 	"""
 }
 
 workflow {
     setupBender()
     setupTrekker()
-    
-    // if (params.reference == "rat") {
-    //     setupRatReference()
-    // }
-    // else {
-    //     setupMouseReference()
-    // }
+    setupContainer()
 }
