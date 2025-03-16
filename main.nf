@@ -14,13 +14,12 @@ process CELLRANGER {
 
     script:
     """
-    /home/hudsonhu/scratch/SlideTagNextflow/PipelineFolder/CellRanger/cellranger-9.0.1/cellranger count \
+    ${projectDir}/PipelineFolder/CellRanger/cellranger-9.0.1/cellranger count \
         --id=${id} \
         --transcriptome=${transcriptome} \
         --fastqs=${cDNA_fastq_dir} \
         --create-bam false \
-        --tenx-cloud-token-path=/home/hudsonhu/scratch/SlideTagNextflow/PipelineFolder/CellRanger/cellranger-9.0.1/config/txg/credentials
-    ls -la .
+        --tenx-cloud-token-path=${projectDir}/PipelineFolder/CellRanger/cellranger-9.0.1/config/txg/credentials
     """
 }
 
@@ -38,7 +37,7 @@ process CELLBENDER {
     script:
     """
     mkdir -p cellbender_output
-    apptainer exec --nv /home/hudsonhu/scratch/SlideTagNextflow/PipelineFolder/CellBender/cellbender_latest.sif cellbender remove-background \
+    apptainer exec --nv ${projectDir}/PipelineFolder/CellBender/cellbender_latest.sif cellbender remove-background \
         --cuda \
         --input ${cellranger_out}/raw_feature_bc_matrix.h5 \
         --model "ambient" \
@@ -101,7 +100,7 @@ process CURIOTREKKER {
     SAMPLESHEET_PATH=\$(readlink -f ${samplesheet})
     
     # Use the absolute path
-    cd "/home/hudsonhu/scratch/SlideTagNextflow/PipelineFolder/CurioTrekker/curiotrekker-v1.1.0/"
+    cd ${projectDir}/PipelineFolder/CurioTrekker/curiotrekker-v1.1.0/
     bash nuclei_locater_toplevel.sh \$SAMPLESHEET_PATH
     """
 }

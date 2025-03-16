@@ -1,0 +1,2 @@
+id,name,fastq_cDNA_dir,fastq_R1_SP,fastq_R2_SP,transcriptome,barcode_file,chip
+ST_BC9_cDNA_lib,ST_BC9_cDNA_lib_sc,/home/hudsonhu/scratch/SlideTagSamples/BC9/cDNA,/home/hudsonhu/scratch/SlideTagSamples/BC9/SP/ST_BC9_SP_lib_S1_L005_R1_001.fastq.gz,/home/hudsonhu/scratch/SlideTagSamples/BC9/SP/ST_BC9_SP_lib_S1_L005_R2_001.fastq.gz,/home/hudsonhu/scratch/SlideTagNextflow/PipelineFolder/Reference/refdata-gex-mRatBN7-2-2024-A,/home/hudsonhu/scratch/SlideTagNextflow/tiles/U0010_002_BeadBarcodes.txt,TrekkerU_CX
